@@ -1,11 +1,11 @@
 package Unidad5.SWING;
 
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
-import java.awt.*;
 
 
 public class ChatSwing extends JFrame {

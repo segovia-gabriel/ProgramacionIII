@@ -2,7 +2,10 @@ package Unidad5.SWING;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class ListaItems extends JFrame {
     private JButton bAgregar;
@@ -10,7 +13,7 @@ public class ListaItems extends JFrame {
     private List lista;
 
     public ListaItems(){
-        super("Lista items: ");
+        super("Lista items");
 
         Container contenedor = getContentPane();
         contenedor.setLayout(new BorderLayout());
@@ -23,6 +26,8 @@ public class ListaItems extends JFrame {
 
         //Configurar los listeners de eventos
         bAgregar.addActionListener(new EscuchadorAgregar());
+        tfItem.addActionListener(new EscuchadorAgregar());
+        lista.addActionListener(new EscuchadorDobleClick());
         this.addWindowListener(new EscuchadorVentana());
 
         setSize(300,300);
@@ -34,9 +39,9 @@ public class ListaItems extends JFrame {
 
     private JPanel crearPanelNorte(){
         JPanel panel = new JPanel(new BorderLayout());
-        panel.add(new Label("Item: "));
+        panel.add(new Label("Item:"));
         tfItem = new JTextField();
-        panel.add(tfItem, BorderLayout.WEST);
+        panel.add(tfItem, BorderLayout.CENTER);
         bAgregar = new JButton("Agregar");
         panel.add(bAgregar,BorderLayout.EAST);
         return panel;
@@ -53,51 +58,65 @@ public class ListaItems extends JFrame {
             tfItem.selectAll();
             tfItem.requestFocus();
         }
-        class EscuchadorVentana implements WindowListener{
+    }
+    class EscuchadorVentana implements WindowListener {
 
-            @Override
-            public void windowOpened(WindowEvent e) {
+        @Override
+        public void windowOpened(WindowEvent windowEvent) {
 
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-                // 1. Ocultar la ventana
-                System.out.println("Ocultando");
-                setVisible(false);
-                // 2. Liberarla con el metodo dispose
-                System.out.println("Liberando");
-                dispose();
-                // 3. Finalizar la ejecucion con system.exit
-                System.exit(0);
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-
-            }
         }
 
+        @Override
+        public void windowClosing(WindowEvent windowEvent) {
+            // 1) Ocultar la ventana
+            System.out.println("Ocultando");
+            setVisible(false);
+            // 2) Liberarla con el metodo dispose
+            System.out.println("Liberando");
+            dispose();
+            // 3) Finalizar la ejecucion con System.exit
+            System.exit(0);
+        }
+
+        @Override
+        public void windowClosed(WindowEvent windowEvent) {
+
+        }
+
+        @Override
+        public void windowIconified(WindowEvent windowEvent) {
+
+        }
+
+        @Override
+        public void windowDeiconified(WindowEvent windowEvent) {
+
+        }
+
+        @Override
+        public void windowActivated(WindowEvent windowEvent) {
+
+        }
+
+        @Override
+        public void windowDeactivated(WindowEvent windowEvent) {
+
+        }
+    }
+
+    class EscuchadorDobleClick implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            // Leer la posicion del item seleccionado
+            int indice = lista.getSelectedIndex();
+            // Configurar el item seleccionado
+            tfItem.setText(lista.getSelectedItem());
+            // Eliminar item de la lista
+            lista.remove(indice);
+            tfItem.selectAll();
+            tfItem.requestFocus();
+        }
     }
     public static void main(String[] args) {
         new ListaItems();
