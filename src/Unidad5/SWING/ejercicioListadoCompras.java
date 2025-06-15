@@ -1,6 +1,7 @@
 package Unidad5.SWING;
 
 import javax.swing.*;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,16 +21,21 @@ public class ejercicioListadoCompras extends JFrame {
         Container contenedor = getContentPane();
         contenedor.setLayout(new BorderLayout());
 
+        // Lista va a ocupar la parte superior como en el ejemplo del ejercicio
         modeloLista = new DefaultListModel<>();
         lista = new JList<>(modeloLista);
         JScrollPane scrollPane = new JScrollPane(lista);
-        contenedor.add(scrollPane, BorderLayout.NORTH);
+        contenedor.add(scrollPane, BorderLayout.CENTER);
 
-        JPanel pCentro = crearPanelCentro();
-        contenedor.add(pCentro, BorderLayout.CENTER);
+        // En el panel inferior va a estar el TextField y los botones
+        JPanel pInferior = new JPanel();
+        pInferior.setLayout(new BoxLayout(pInferior,BoxLayout.Y_AXIS));
+        pInferior.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        pInferior.add(crearPanelCentro());
+        pInferior.add(Box.createVerticalStrut(10)); // Definimos el espaciado entre los paneles
+        pInferior.add(crearPanelSur());
 
-        JPanel pSur = crearPanelSur();
-        contenedor.add(pSur, BorderLayout.SOUTH);
+        contenedor.add(pInferior,BorderLayout.SOUTH);
 
         // Configurar los listeners de eventos
         bAgregar.addActionListener(new EscuchadorAgregar());
@@ -43,7 +49,7 @@ public class ejercicioListadoCompras extends JFrame {
     }
 
     private JPanel crearPanelCentro(){
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panel.add(new JLabel("Item: "));
         tfItem = new JTextField(20);
         panel.add(tfItem);
@@ -51,7 +57,7 @@ public class ejercicioListadoCompras extends JFrame {
     }
 
     private JPanel crearPanelSur(){
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.RIGHT,10,10));
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER,10,10));
         bAgregar = new JButton("Agregar");
         bBuscar = new JButton("Buscar");
         bEliminar = new JButton("Eliminar");
@@ -147,5 +153,8 @@ public class ejercicioListadoCompras extends JFrame {
         }
     }
 
-    public static void main(String[] args) {new ejercicioListadoCompras();}
+    public static void main(String[] args) throws UnsupportedLookAndFeelException {
+        UIManager.setLookAndFeel(new NimbusLookAndFeel());
+        new ejercicioListadoCompras();
+    }
 }
