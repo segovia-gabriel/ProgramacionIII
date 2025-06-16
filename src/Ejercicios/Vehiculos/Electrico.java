@@ -18,6 +18,6 @@ public class Electrico extends Vehiculo implements Conectable{
 
     @Override
     public void conectar() {
-        System.out.println("Iniciando la carga del vehiculo " + getMarca() + getModelo() + ".");
+        System.out.println("Iniciando la carga del vehiculo " + getMarca() + " " + getModelo() + ".");
     }
 }
