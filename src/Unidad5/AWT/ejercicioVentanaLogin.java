@@ -1,17 +1,14 @@
 package Unidad5.AWT;
 
-import org.w3c.dom.Text;
-import org.w3c.dom.ls.LSOutput;
-
 import java.awt.*;
 
-public class EjercicioVentanaLogin extends Frame {
+public class ejercicioVentanaLogin extends Frame {
     private Button bAceptar;
     private Button bSalir;
     private TextField tfNombre;
     private TextField tfContrasenia;
 
-    public EjercicioVentanaLogin(){
+    public ejercicioVentanaLogin(){
         super("Login");
         setLayout(new BorderLayout(10,10)); //hgap y vgap, es el espacio entre paneles.
         //Panel Norte
@@ -46,6 +43,6 @@ public class EjercicioVentanaLogin extends Frame {
         return panel;
     }
 
-    public static void main(String[] args) {new EjercicioVentanaLogin();}
+    public static void main(String[] args) {new ejercicioVentanaLogin();}
 
 }
