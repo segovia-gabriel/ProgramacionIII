@@ -1,0 +1,4 @@
+Periferico, Mouse Logitech G305, 35000
+Periferico, Teclado Royal Kludge R87 PRO, 87999
+Hardware, Ryzen 5 9600x, 374999
+Notebook, Acer Nitro 5 i7 12va/16gb/1tb/rtx3050, 12999431

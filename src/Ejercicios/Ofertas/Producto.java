@@ -74,8 +74,8 @@ public class Producto {
                 "\nStock: " + stock +
                 "\nCategoria: " + (categoria != null ? categoria.getNombre()
                 /*Expresion condicional TERNARIA, es una forma abreviada de escribir un if ... else
-                * ? representa el verdadero del if, y el : representa el else, es decir la
-                * parte false*/
+                 * ? representa el verdadero del if, y el : representa el else, es decir la
+                 * parte false*/
                 + " (Activa: " + categoria.isActiva() + ")" : "Sin categoría");
     }
 }
